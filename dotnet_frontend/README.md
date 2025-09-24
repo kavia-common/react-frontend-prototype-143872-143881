@@ -2,6 +2,9 @@
 
 This folder contains an ASP.NET Core MVC web app styled with the "Ocean Professional" theme.
 
+Default Preview Target
+- This app is the default preview for the workspace and is expected to run on port 5000.
+
 Key preview features:
 - Binds to 0.0.0.0 on port 5000 by default (via ASPNETCORE_URLS)
 - Health endpoint at `/health` returns 200 OK with JSON

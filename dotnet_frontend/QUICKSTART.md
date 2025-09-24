@@ -1,16 +1,31 @@
-# Quickstart for Preview Systems
+# Quick Start (Default Preview Target)
 
-Most automated preview systems expect a single start command.
+This ASP.NET Core MVC app is the default preview for this workspace. It binds to `0.0.0.0:5000` by default.
 
-Recommended:
-- Command: `./dotnet_frontend/start.sh`
-- Exposed Port: `5000`
-- Health Check: `GET /health`
+Start (recommended):
+1) From this directory:
+   chmod +x ./start.sh
+   ./start.sh
 
-Environment variables:
-- `ASPNETCORE_URLS` (optional): defaults to `http://0.0.0.0:5000`
-- `PORT` (optional): if your platform sets this, you can use `ASPNETCORE_URLS="http://0.0.0.0:${PORT}"`
+2) Open http://localhost:5000
 
-Docker:
-- Build: `docker build -t dotnet_frontend:dev ./dotnet_frontend`
-- Run: `docker run --rm -p 5000:5000 dotnet_frontend:dev`
+Health:
+- GET http://localhost:5000/health → 200 OK
+
+Alternative start commands:
+- With explicit environment:
+  ASPNETCORE_URLS=http://0.0.0.0:5000 dotnet run --project dotnet_frontend.csproj
+- If your environment provides PORT:
+  ASPNETCORE_URLS="http://0.0.0.0:${PORT}" dotnet run --project dotnet_frontend.csproj
+- Using command-line `--urls` (equivalent):
+  dotnet run --project dotnet_frontend.csproj --urls http://0.0.0.0:5000
+
+Docker (optional):
+- Build:  docker build -t dotnet_frontend:dev .
+- Run:    docker run --rm -p 5000:5000 dotnet_frontend:dev
+- Open:   http://localhost:5000
+
+Notes:
+- Ensure .NET SDK 8+ is available: `dotnet --info`
+- Do not rely on `launchSettings.json` for preview ports; use `ASPNETCORE_URLS` instead.
+- This project exposes a health endpoint at `/health` for preview readiness checks.

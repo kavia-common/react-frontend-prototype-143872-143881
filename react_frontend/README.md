@@ -1,5 +1,7 @@
 # Lightweight React Template for KAVIA
 
+Note: This React app is not the default preview target in this workspace. The default preview is the ASP.NET Core app in `dotnet_frontend` running on port 5000. Use the steps below only if you want to run the React app locally for development.
+
 This project provides a minimal React template with a clean, modern UI and minimal dependencies.
 
 ## Features
@@ -9,7 +11,7 @@ This project provides a minimal React template with a clean, modern UI and minim
 - **Fast**: Minimal dependencies for quick loading times
 - **Simple**: Easy to understand and modify
 
-## Getting Started
+## Getting Started (Local Only)
 
 In the project directory, you can run:
 

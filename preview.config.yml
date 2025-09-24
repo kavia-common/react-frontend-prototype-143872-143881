@@ -1,0 +1,11 @@
+# Default preview configuration for this workspace
+default_service: dotnet_frontend
+services:
+  dotnet_frontend:
+    path: dotnet_frontend
+    command: ASPNETCORE_URLS=http://0.0.0.0:5000 dotnet run --project dotnet_frontend.csproj
+    port: 5000
+  react_frontend:
+    path: react_frontend
+    # Deprioritized; no default preview set for this service.
+    # To run locally: npm install && npm start

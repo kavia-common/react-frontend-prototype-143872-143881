@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="hero">
+    <div class="hero-inner">
+        <div class="logo-spin" aria-hidden="true">⚙️</div>
+        <h1 class="title">Welcome to Ocean Professional</h1>
+        <p class="subtitle">
+            This is a minimal ASP.NET Core MVC app mirroring the React demo features:
+            layout, theming, and a light/dark toggle.
+        </p>
+        <div class="actions">
+            <a class="btn btn-primary" href="https://learn.microsoft.com/aspnet/core" target="_blank" rel="noopener">Learn ASP.NET Core</a>
+        </div>
+        <div class="meta">
+            <p>Edit <code>Views/Home/Index.cshtml</code>, <code>wwwroot/css/site.css</code>, and <code>wwwroot/js/site.js</code> then refresh to see changes.</p>
+            <p class="current-theme">Current theme: <strong id="currentThemeLabel">light</strong></p>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+<script>
+    // Reflect current theme label in the page on load
+    (function () {
+        var theme = document.documentElement.getAttribute('data-theme') || 'light';
+        var label = document.getElementById('currentThemeLabel');
+        if (label) { label.textContent = theme; }
+
+        document.addEventListener('themechange', function (e) {
+            var v = (e && e.detail && e.detail.theme) || (document.documentElement.getAttribute('data-theme') || 'light');
+            if (label) { label.textContent = v; }
+        });
+    })();
+</script>
+}

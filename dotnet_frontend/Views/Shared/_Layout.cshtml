@@ -1,0 +1,53 @@
+@{
+    var appTitle = "Ocean Professional Demo";
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@appTitle - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <div class="logo">🌊</div>
+                <div class="brand-text">
+                    <a class="brand-title" href="@Url.Action("Index", "Home")">Ocean Professional</a>
+                    <div class="brand-subtitle">Modern ASP.NET Core MVC</div>
+                </div>
+            </div>
+            <nav class="nav">
+                <a class="nav-link @(ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")" href="@Url.Action("Index","Home")">Home</a>
+                <a class="nav-link" href="https://learn.microsoft.com/aspnet/core" target="_blank" rel="noopener">Docs</a>
+                <a class="nav-link" href="https://github.com/dotnet" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+            <div class="actions">
+                <button id="themeToggle" class="btn btn-secondary" type="button" aria-label="Toggle theme">
+                    <span class="icon" aria-hidden="true">🌙</span>
+                    <span class="text">Dark</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <div class="container">
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="left">© @DateTime.Now.Year Ocean Professional</div>
+            <div class="right">Built with ASP.NET Core 7</div>
+        </div>
+    </footer>
+
+    @RenderSection("Scripts", required: false)
+
+    <script src="~/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+@{
+    var title = ViewData["Title"] as string ?? "Demo Project - Ocean Professional";
+}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@title</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script>
+        // Theme toggle persistence
+        (function () {
+            const theme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <a class="brand-link" href="@Url.Action("Index","Home")">
+                    <span class="brand-logo">🌊</span>
+                    <span class="brand-name">OceanPro</span>
+                </a>
+            </div>
+            <nav class="nav">
+                <a class="nav-link" href="@Url.Action("Index","Home")">Home</a>
+                <a class="nav-link" href="https://reactjs.org" target="_blank" rel="noopener">Learn React</a>
+                <a class="nav-link" href="/health">Health</a>
+            </nav>
+            <button id="themeToggle" class="btn theme-toggle" aria-label="Toggle theme">🌙 Dark</button>
+        </div>
+    </header>
+
+    <main class="site-content container">
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>&copy; @DateTime.UtcNow.Year Ocean Professional Demo • Built with ASP.NET Core MVC</p>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const btn = document.getElementById('themeToggle');
+            const root = document.documentElement;
+
+            function updateBtn() {
+                const t = root.getAttribute('data-theme') || 'light';
+                btn.textContent = t === 'light' ? '🌙 Dark' : '☀️ Light';
+                btn.setAttribute('aria-label', `Switch to ${t === 'light' ? 'dark' : 'light'} mode`);
+            }
+
+            btn.addEventListener('click', function () {
+                const current = root.getAttribute('data-theme') || 'light';
+                const next = current === 'light' ? 'dark' : 'light';
+                root.setAttribute('data-theme', next);
+                localStorage.setItem('theme', next);
+                updateBtn();
+            });
+
+            updateBtn();
+        })();
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

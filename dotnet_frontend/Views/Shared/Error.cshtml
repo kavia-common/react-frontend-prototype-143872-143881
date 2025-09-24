@@ -1,0 +1,9 @@
+@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="error">
+    <h1>Something went wrong</h1>
+    <p>Please try again later.</p>
+    <a href="@Url.Action("Index","Home")" class="btn btn-primary">Back to Home</a>
+</section>

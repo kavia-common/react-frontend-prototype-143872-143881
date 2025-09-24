@@ -1,71 +1,49 @@
-@{
-    var title = ViewData["Title"] as string ?? "Demo Project - Ocean Professional";
-}
-<!DOCTYPE html>
-<html lang="en" data-theme="light">
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@title</title>
-    <link rel="stylesheet" href="~/css/site.css" />
-    <script>
-        // Theme toggle persistence
-        (function () {
-            const theme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - dotnet_frontend</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/dotnet_frontend.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-inner">
-            <div class="brand">
-                <a class="brand-link" href="@Url.Action("Index","Home")">
-                    <span class="brand-logo">🌊</span>
-                    <span class="brand-name">OceanPro</span>
-                </a>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">dotnet_frontend</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <nav class="nav">
-                <a class="nav-link" href="@Url.Action("Index","Home")">Home</a>
-                <a class="nav-link" href="https://reactjs.org" target="_blank" rel="noopener">Learn React</a>
-                <a class="nav-link" href="/health">Health</a>
-            </nav>
-            <button id="themeToggle" class="btn theme-toggle" aria-label="Toggle theme">🌙 Dark</button>
-        </div>
+        </nav>
     </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
 
-    <main class="site-content container">
-        @RenderBody()
-    </main>
-
-    <footer class="site-footer">
-        <div class="container footer-inner">
-            <p>&copy; @DateTime.UtcNow.Year Ocean Professional Demo • Built with ASP.NET Core MVC</p>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - dotnet_frontend - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-
-    <script>
-        (function () {
-            const btn = document.getElementById('themeToggle');
-            const root = document.documentElement;
-
-            function updateBtn() {
-                const t = root.getAttribute('data-theme') || 'light';
-                btn.textContent = t === 'light' ? '🌙 Dark' : '☀️ Light';
-                btn.setAttribute('aria-label', `Switch to ${t === 'light' ? 'dark' : 'light'} mode`);
-            }
-
-            btn.addEventListener('click', function () {
-                const current = root.getAttribute('data-theme') || 'light';
-                const next = current === 'light' ? 'dark' : 'light';
-                root.setAttribute('data-theme', next);
-                localStorage.setItem('theme', next);
-                updateBtn();
-            });
-
-            updateBtn();
-        })();
-    </script>
-    @RenderSection("Scripts", required: false)
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,27 +1,31 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using dotnet_frontend.Models;
 
-namespace DotNetFrontend.Controllers
+namespace dotnet_frontend.Controllers;
+
+public class HomeController : Controller
 {
-    // PUBLIC_INTERFACE
-    public class HomeController : Controller
-    {
-        /// <summary>
-        /// Landing page that demonstrates the Ocean Professional theme and theme toggle.
-        /// </summary>
-        /// <returns>Razor view for the Index page.</returns>
-        public IActionResult Index()
-        {
-            ViewData["Title"] = "Home";
-            return View();
-        }
+    private readonly ILogger<HomeController> _logger;
 
-        /// <summary>
-        /// Error page route.
-        /// </summary>
-        /// <returns>Error view.</returns>
-        public IActionResult Error()
-        {
-            return View();
-        }
+    public HomeController(ILogger<HomeController> logger)
+    {
+        _logger = logger;
+    }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    public IActionResult Privacy()
+    {
+        return View();
+    }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
